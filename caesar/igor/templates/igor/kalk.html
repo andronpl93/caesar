@@ -1,0 +1,39 @@
+ {% load staticfiles %}
+			
+    <html>
+        <head>
+            <title>Caesar</title>
+               <link rel="stylesheet" href="{% static 'css/igor.css' %}">
+        </head>
+        <body>
+				<div id='blya'>Шифр Цезаря<hr/></div>
+				<div id='wraper'>
+					
+					<form method="POST"  class="post-form">{% csrf_token %}
+						
+						
+								<textarea rows="10" cols="45" name="lef" class="te" autofocus>{{lef}}</textarea>
+								<div id='wrap2'>
+									<div id='btnDiv'class='btn'>ROT   <input type="text" name="inText" id="inText" value='{{rot}}'></div>
+									<button type="submit" class="btn" name= "knopka" value="decoder"><img src="{% static 'images/john.jpg' %}"  />Расшифровать</button>
+									<button type="submit" class="btn"  name= "knopka" value="encoder"><img src="{% static 'images/locke.jpg' %}"  />Зашифровать</button>
+									<button type="submit" class="btn"  name= "knopka" value="kidok"><img src="{% static 'images/kidok.jpg' %}"  />Перекинуть текст</button>
+									<button type="submit" class="btn"  name= "knopka" value="vanga"><img src="{% static 'images/vanga.jpg' %}"  />Ванговать</button>
+								</div>
+								<textarea rows="10" cols="45" name="rig" readonly class="te">{{rig}}</textarea>
+						
+					</form>
+				</div>
+				<div id="diagram">
+				<hr>
+						{% for norm,chastota,abc in paket %}
+							<div class="tower" style="height:{{norm}}%"><p>{{chastota}}</br><span>{{abc}}</span></p></div>
+						{% endfor %}
+				</div>
+				<div  visibility='{{rot}}' id="vang">
+					{{lichka}}
+				</div>
+						
+				
+        </body>
+    </html>
