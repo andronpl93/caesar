@@ -2,23 +2,26 @@
 			
     <html>
         <head>
+            <meta HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
             <title>Caesar</title>
-               <link rel="stylesheet" href="{% static 'css/igor.css' %}">
+            <link rel="stylesheet" href="{% static 'css/igor.css' %}">
+            <script src="{% static 'js/jquery.min.js' %}"></script>
+            <script src="{% static 'js/myScript.js' %}"></script>
         </head>
         <body>
-				<div id='blya'>Шифр Цезаря<hr/></div>
+				<div id='desc'>Шифр Цезаря<hr/><div class="myError"><span>x</span></div></div>
 				<div id='wraper'>
 					
-					<form method="POST"  class="post-form">{% csrf_token %}
+					<form method="POST"   onsubmit="return false;" class="post-form">{% csrf_token %}
 						
 						
-								<textarea rows="10" cols="45" name="lef" class="te" autofocus>{{lef}}</textarea>
+								<textarea rows="10" cols="45" name="lef" class="te" placeholder="Введите текст..." autofocus>{{lef}}</textarea>
 								<div id='wrap2'>
 									<div id='btnDiv'class='btn'>ROT   <input type="text" name="inText" id="inText" value='{{rot}}'></div>
-									<button type="submit" class="btn" name= "knopka" value="decoder"><img src="{% static 'images/john.jpg' %}"  />Расшифровать</button>
-									<button type="submit" class="btn"  name= "knopka" value="encoder"><img src="{% static 'images/locke.jpg' %}"  />Зашифровать</button>
-									<button type="submit" class="btn"  name= "knopka" value="kidok"><img src="{% static 'images/kidok.jpg' %}"  />Перекинуть текст</button>
-									<button type="submit" class="btn"  name= "knopka" value="vanga"><img src="{% static 'images/vanga.jpg' %}"  />Ванговать</button>
+									<button  class="btn"   name="decoder"><img src="{% static 'images/john.jpg' %}"  />Расшифровать</button>
+									<button  class="btn"   name="encoder"><img src="{% static 'images/locke.jpg' %}"  />Зашифровать</button>
+									<button  class="btn"   name="kidok"><img src="{% static 'images/kidok.jpg' %}"  />Перекинуть текст</button>
+									<button  class="btn"   name="vanga"><img src="{% static 'images/vanga.jpg' %}"  />Ванговать</button>
 								</div>
 								<textarea rows="10" cols="45" name="rig" readonly class="te">{{rig}}</textarea>
 						
@@ -26,13 +29,12 @@
 				</div>
 				<div id="diagram">
 				<hr>
-						{% for norm,chastota,abc in paket %}
-							<div class="tower" style="height:{{norm}}%"><p>{{chastota}}</br><span>{{abc}}</span></p></div>
-						{% endfor %}
+
 				</div>
 				<div  visibility='{{rot}}' id="vang">
 					{{lichka}}
 				</div>
+
 						
 				
         </body>
